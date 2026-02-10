@@ -12,7 +12,9 @@ const PGN_OPTIONS = { maxWidth: 80, newline: "\n" } as const;
 
 export const useChessGame = () => {
   const [chess] = useState(() => new Chess());
-  const [moveHistory, setMoveHistory] = useState<Array<{ from: string; to: string; promotion?: string }>>([]);
+  const [moveHistory, setMoveHistory] = useState<
+    Array<{ from: string; to: string; promotion?: string }>
+  >([]);
 
   const [fen, setFen] = useState(chess.fen());
   const [pgn, setPgn] = useState(chess.pgn(PGN_OPTIONS));
@@ -58,14 +60,17 @@ export const useChessGame = () => {
     if (move) {
       const newFen = updateGameState();
       clearRedo();
-      setMoveHistory((prev) => [...prev, { from: move.from, to: move.to, promotion: move.promotion }]);
+      setMoveHistory((prev) => [
+        ...prev,
+        { from: move.from, to: move.to, promotion: move.promotion },
+      ]);
       setFenHistory((prev) => [...prev, newFen]);
       setCurrentMoveIndex(-1);
       return true;
     }
     return false;
   };
-  
+
   const getDests = () => {
     const dests = new Map<Square, Square[]>();
     chess.moves({ verbose: true }).forEach((move) => {
@@ -90,15 +95,23 @@ export const useChessGame = () => {
       const moves = parsePgnMoves(pgnString.trim());
 
       const fenHistoryTemp = [chess.fen()];
-      const moveHistoryTemp: Array<{ from: string; to: string; promotion?: string }> = [];
-      
+      const moveHistoryTemp: Array<{
+        from: string;
+        to: string;
+        promotion?: string;
+      }> = [];
+
       for (const move of moves) {
         const result = chess.move(move);
         if (!result) {
           console.error("Invalid move in PGN:", move);
           return false;
         }
-        moveHistoryTemp.push({ from: result.from, to: result.to, promotion: result.promotion });
+        moveHistoryTemp.push({
+          from: result.from,
+          to: result.to,
+          promotion: result.promotion,
+        });
         fenHistoryTemp.push(chess.fen());
       }
 
@@ -118,10 +131,11 @@ export const useChessGame = () => {
   const getCheck = () => isCheck;
 
   const undo = () => {
-    const newIndex = currentMoveIndex === -1 ? moveHistory.length - 2 : currentMoveIndex - 1;
-    
+    const newIndex =
+      currentMoveIndex === -1 ? moveHistory.length - 2 : currentMoveIndex - 1;
+
     if (newIndex < -1) return false;
-    
+
     if (newIndex === -1) {
       // Go back to initial position
       chess.reset();
@@ -150,22 +164,22 @@ export const useChessGame = () => {
 
   const redo = () => {
     const newIndex = currentMoveIndex + 1;
-    
+
     if (newIndex >= moveHistory.length) return false;
-    
+
     // Navigate to next position
     chess.reset();
     for (let i = 0; i <= newIndex; i++) {
       chess.move(moveHistory[i]);
     }
-    
+
     // If we're at the last move, set index to -1
     if (newIndex === moveHistory.length - 1) {
       setCurrentMoveIndex(-1);
     } else {
       setCurrentMoveIndex(newIndex);
     }
-    
+
     setFen(chess.fen());
     setIsCheck(chess.inCheck());
     return true;
@@ -190,13 +204,13 @@ export const useChessGame = () => {
 
     // Navigate to the position without modifying the history
     setCurrentMoveIndex(moveIndex);
-    
+
     // Update Chess instance to the selected position
     chess.reset();
     for (let i = 0; i <= moveIndex; i++) {
       chess.move(moveHistory[i]);
     }
-    
+
     // Update display state (but keep full PGN)
     setFen(chess.fen());
     setIsCheck(chess.inCheck());

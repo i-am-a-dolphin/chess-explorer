@@ -9,8 +9,8 @@ import {
   RotateCcw,
   Trash2,
 } from "lucide-react";
-import Link from "next/link";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 import { useMemo, useState } from "react";
 
 import { PUZZLE_THEMES } from "@/__generated/puzzles";

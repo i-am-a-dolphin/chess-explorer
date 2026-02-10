@@ -98,8 +98,8 @@ export const MoveHistoryTable = ({
                       </TableCell>
                       <TableCell
                         className={`cursor-pointer border-l border-gray-300 px-2 py-1.5 font-mono dark:border-gray-600 h-auto ${isWhiteActive
-                            ? "bg-blue-200 dark:bg-blue-700 font-bold"
-                            : "hover:bg-gray-200 dark:hover:bg-gray-700"
+                          ? "bg-blue-200 dark:bg-blue-700 font-bold"
+                          : "hover:bg-gray-200 dark:hover:bg-gray-700"
                           }`}
                         onClick={() => goToMoveIndex(whiteMoveIndex)}
                       >
@@ -107,8 +107,8 @@ export const MoveHistoryTable = ({
                       </TableCell>
                       <TableCell
                         className={`cursor-pointer border-l border-gray-300 px-2 py-1.5 font-mono dark:border-gray-600 h-auto ${isBlackActive
-                            ? "bg-blue-200 dark:bg-blue-700 font-bold"
-                            : "hover:bg-gray-200 dark:hover:bg-gray-700"
+                          ? "bg-blue-200 dark:bg-blue-700 font-bold"
+                          : "hover:bg-gray-200 dark:hover:bg-gray-700"
                           }`}
                         onClick={() => black && goToMoveIndex(blackMoveIndex)}
                       >

@@ -92,5 +92,10 @@
     "players": "Players",
     "rated": "Rated",
     "unrated": "Unrated"
+  },
+  "footer": {
+    "github": "GitHub",
+    "description": "Opening and endgame explorer for chess beginners",
+    "copyright": "© {year} Chess Explorer. All rights reserved."
   }
 }

@@ -1,36 +1,177 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
+  <h1>♟️ Chess Explorer</h1>
+  <p>
+    <strong>Opening and endgame explorer for chess beginners</strong>
+  </p>
+  <p>
+    <a href="#features">Features</a> •
+    <a href="#getting-started">Getting Started</a> •
+    <a href="#tech-stack">Tech Stack</a> •
+    <a href="#license">License</a>
+  </p>
+</div>
 
-## Getting Started
+---
 
-First, run the development server:
+## ✨ Features
+
+### 🔍 Opening Explorer
+
+- Browse and explore chess openings with an interactive board
+- View well-known next moves for any position
+- Search through Lichess's extensive opening database
+- See opening names and variations in real-time
+
+### 🎯 Puzzle Practice
+
+- Solve chess puzzles from Lichess database
+- Multiple puzzle variants and difficulty levels
+- Track puzzle ratings and themes
+
+### ♔ Endgame Tablebase
+
+- Access Lichess tablebase for perfect endgame play
+- See evaluation and best moves for endgame positions
+- Learn optimal endgame technique
+
+### 🌐 Internationalization
+
+- Full support for English and Korean
+- Easy to extend to more languages
+- Localized opening names and UI
+
+### 🎨 Modern UI
+
+- Clean, responsive design with Tailwind CSS
+- Dark mode support
+- Smooth animations and transitions
+- Mobile-friendly interface
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- pnpm (recommended) or npm
+
+### Installation
+
+1. Clone the repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/yongjun21/chess-explorer.git
+cd chess-explorer
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Generate Lichess data
 
-## Learn More
+```bash
+pnpm generate
+```
 
-To learn more about Next.js, take a look at the following resources:
+4. Run the development server
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+pnpm dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-## Deploy on Vercel
+### Available Scripts
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `pnpm dev` - Start development server
+- `pnpm build` - Build for production
+- `pnpm start` - Start production server
+- `pnpm lint` - Run ESLint
+- `pnpm format` - Format code with Prettier
+- `pnpm generate` - Generate opening and puzzle data from Lichess
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js 16](https://nextjs.org/) with App Router
+- **UI Library**: [React 19](https://react.dev/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Components**: [shadcn/ui](https://ui.shadcn.com/) + [Radix UI](https://www.radix-ui.com/)
+- **Chess Board**: [@lichess-org/chessground](https://github.com/lichess-org/chessground)
+- **Chess Logic**: [chess.js](https://github.com/jhlywa/chess.js) + [chessops](https://github.com/niklasf/chessops)
+- **Internationalization**: [next-intl](https://next-intl-docs.vercel.app/)
+- **Theme**: [next-themes](https://github.com/pacocoursey/next-themes)
+- **TypeScript**: Type-safe development
+- **Package Manager**: pnpm
+
+---
+
+## 📁 Project Structure
+
+```
+chess-explorer/
+├── app/                    # Next.js app directory
+│   └── [locale]/          # Internationalized routes
+├── components/            # React components
+│   ├── shadcn-ui/        # shadcn/ui components
+│   └── ...               # Custom components
+├── features/             # Feature-based modules
+│   ├── chess/           # Chess game logic
+│   ├── chessground/     # Board UI
+│   ├── opening-tree/    # Opening explorer
+│   └── puzzle-info/     # Puzzle features
+├── hooks/               # Custom React hooks
+├── lib/                 # Utility functions
+├── messages/            # i18n translations
+├── scripts/             # Data generation scripts
+├── services/            # API services
+└── types/               # TypeScript types
+```
+
+---
+
+## 🌍 Data Sources
+
+- **Openings**: [Lichess Opening Explorer](https://lichess.org/api#tag/Opening-Explorer)
+- **Puzzles**: [Lichess Puzzle Database](https://database.lichess.org/#puzzles)
+- **Endgame Tablebase**: [Lichess Tablebase API](https://lichess.org/api#tag/Tablebase)
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+## 🙏 Acknowledgments
+
+- [Lichess](https://lichess.org/) for providing free chess APIs and data
+- [shadcn/ui](https://ui.shadcn.com/) for beautiful UI components
+- The chess community for continuous inspiration
+
+---
+
+<div align="center">
+  <p>Made with ♟️ and ❤️</p>
+  <p>
+    <a href="https://github.com/i-am-a-dolphin/chess-explorer">⭐ Star this repo</a>
+  </p>
+</div>

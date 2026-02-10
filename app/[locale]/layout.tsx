@@ -7,6 +7,7 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { ThemeProvider } from "next-themes";
 
+import { Footer } from "@/components/footer";
 import { Toaster } from "@/components/shadcn-ui/sonner";
 import { TooltipProvider } from "@/components/shadcn-ui/tooltip";
 import { routing } from "@/i18n/routing";
@@ -70,6 +71,7 @@ const LocaleLayout = async ({ children, params }: Props) => {
             >
               <TooltipProvider>
                 {children}
+                <Footer />
                 <Toaster />
               </TooltipProvider>
             </ThemeProvider>

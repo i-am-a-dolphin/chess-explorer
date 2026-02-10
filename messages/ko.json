@@ -92,5 +92,10 @@
     "players": "플레이어",
     "rated": "레이팅됨",
     "unrated": "레이팅 안 됨"
+  },
+  "footer": {
+    "github": "GitHub",
+    "description": "초보자를 위한 체스 오프닝 및 엔드게임 탐색기",
+    "copyright": "© {year} Chess Explorer. All rights reserved."
   }
 }

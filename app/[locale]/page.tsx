@@ -26,10 +26,10 @@ import { getNextOpeningMoves } from "@/utils/opening-utils";
 const HomePage = () => {
   const chessGame = useChessGame();
   const t = useTranslations("chess");
-  const { pgn, fen, fenHistory, loadFromPgn, goToMoveIndex } = chessGame;
+  const { pgn, fen, fenHistory, loadFromPgn, goToMoveIndex, currentMoveIndex } = chessGame;
   const [previewMove, setPreviewMove] = useState<string | null>(null);
   const [_, setSelectedTheme] = useState<PuzzleTheme | null>(null);
-  const { puzzle, loading, error, loadNewPuzzle } = usePuzzle();
+  const { puzzle, loading, error, loadNewPuzzle, clearPuzzle } = usePuzzle();
 
   const nextOpeningMoves = useMemo(() => getNextOpeningMoves(pgn), [pgn]);
   const pieceCount = useMemo(
@@ -59,6 +59,7 @@ const HomePage = () => {
         {...chessGame}
         previewMove={previewMove}
         goToMoveIndex={goToMoveIndex}
+        currentMoveIndex={currentMoveIndex}
       />
       <div className="space-y-4">
         <Tabs defaultValue="opening">
@@ -90,6 +91,7 @@ const HomePage = () => {
             currentPgn={pgn}
             loadFromPgn={loadFromPgn}
             onPreviewMoveChange={setPreviewMove}
+            onClear={clearPuzzle}
           />
         )}
         <GameInfo

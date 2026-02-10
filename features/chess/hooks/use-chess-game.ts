@@ -12,6 +12,7 @@ const PGN_OPTIONS = { maxWidth: 80, newline: "\n" } as const;
 
 export const useChessGame = () => {
   const [chess] = useState(() => new Chess());
+  const [moveHistory, setMoveHistory] = useState<Array<{ from: string; to: string; promotion?: string }>>([]);
 
   const [fen, setFen] = useState(chess.fen());
   const [pgn, setPgn] = useState(chess.pgn(PGN_OPTIONS));
@@ -19,6 +20,7 @@ export const useChessGame = () => {
   const [isGameOver, setIsGameOver] = useState(chess.isGameOver());
   const [gameOverReason, setGameOverReason] = useState<string | null>(null);
   const [fenHistory, setFenHistory] = useState<string[]>([chess.fen()]);
+  const [currentMoveIndex, setCurrentMoveIndex] = useState(-1); // -1 means at the latest position
 
   const { clearRedo, pushUndo, popRedo, hasRedoMoves } = useMoveHistory();
 
@@ -41,16 +43,29 @@ export const useChessGame = () => {
   };
 
   const makeMove = (orig: string, dest: string, promotion?: string) => {
+    // If viewing a historical position, truncate history from current position
+    if (currentMoveIndex >= 0) {
+      chess.reset();
+      const newHistory = moveHistory.slice(0, currentMoveIndex + 1);
+      for (const move of newHistory) {
+        chess.move(move);
+      }
+      setMoveHistory(newHistory);
+      setFenHistory((prev) => prev.slice(0, currentMoveIndex + 2));
+    }
+
     const move = chess.move({ from: orig, to: dest, promotion });
     if (move) {
       const newFen = updateGameState();
       clearRedo();
+      setMoveHistory((prev) => [...prev, { from: move.from, to: move.to, promotion: move.promotion }]);
       setFenHistory((prev) => [...prev, newFen]);
+      setCurrentMoveIndex(-1);
       return true;
     }
     return false;
   };
-
+  
   const getDests = () => {
     const dests = new Map<Square, Square[]>();
     chess.moves({ verbose: true }).forEach((move) => {
@@ -64,7 +79,9 @@ export const useChessGame = () => {
     chess.reset();
     const initialFen = updateGameState();
     clearRedo();
+    setMoveHistory([]);
     setFenHistory([initialFen]);
+    setCurrentMoveIndex(-1);
   };
 
   const loadFromPgn = useCallback((pgnString: string) => {
@@ -73,17 +90,22 @@ export const useChessGame = () => {
       const moves = parsePgnMoves(pgnString.trim());
 
       const fenHistoryTemp = [chess.fen()];
+      const moveHistoryTemp: Array<{ from: string; to: string; promotion?: string }> = [];
+      
       for (const move of moves) {
         const result = chess.move(move);
         if (!result) {
           console.error("Invalid move in PGN:", move);
           return false;
         }
+        moveHistoryTemp.push({ from: result.from, to: result.to, promotion: result.promotion });
         fenHistoryTemp.push(chess.fen());
       }
 
       updateGameState();
       clearRedo();
+      setCurrentMoveIndex(-1);
+      setMoveHistory(moveHistoryTemp);
       setFenHistory(fenHistoryTemp);
       return true;
     } catch (e) {
@@ -96,57 +118,88 @@ export const useChessGame = () => {
   const getCheck = () => isCheck;
 
   const undo = () => {
-    const move = chess.undo();
-    if (move) {
-      pushUndo({ from: move.from, to: move.to, promotion: move.promotion });
-      updateGameState();
-      setFenHistory((prev) => prev.slice(0, -1));
-      return true;
+    const newIndex = currentMoveIndex === -1 ? moveHistory.length - 2 : currentMoveIndex - 1;
+    
+    if (newIndex < -1) return false;
+    
+    if (newIndex === -1) {
+      // Go back to initial position
+      chess.reset();
+      setCurrentMoveIndex(-1);
+      setFen(chess.fen());
+      setIsCheck(chess.inCheck());
+    } else {
+      // Navigate to previous position
+      chess.reset();
+      for (let i = 0; i <= newIndex; i++) {
+        chess.move(moveHistory[i]);
+      }
+      setCurrentMoveIndex(newIndex);
+      setFen(chess.fen());
+      setIsCheck(chess.inCheck());
     }
-    return false;
+    return true;
   };
 
-  const canUndo = () => chess.history().length > 0;
+  const canUndo = () => {
+    if (currentMoveIndex === -1) {
+      return moveHistory.length > 0;
+    }
+    return currentMoveIndex >= 0;
+  };
 
   const redo = () => {
-    if (!hasRedoMoves()) return false;
-
-    const lastMove = popRedo();
-    const move = chess.move({
-      from: lastMove.from,
-      to: lastMove.to,
-      promotion: lastMove.promotion,
-    });
-
-    if (move) {
-      const newFen = updateGameState();
-      setFenHistory((prev) => [...prev, newFen]);
-      return true;
+    const newIndex = currentMoveIndex + 1;
+    
+    if (newIndex >= moveHistory.length) return false;
+    
+    // Navigate to next position
+    chess.reset();
+    for (let i = 0; i <= newIndex; i++) {
+      chess.move(moveHistory[i]);
     }
-    return false;
+    
+    // If we're at the last move, set index to -1
+    if (newIndex === moveHistory.length - 1) {
+      setCurrentMoveIndex(-1);
+    } else {
+      setCurrentMoveIndex(newIndex);
+    }
+    
+    setFen(chess.fen());
+    setIsCheck(chess.inCheck());
+    return true;
   };
 
-  const canRedo = () => hasRedoMoves();
+  const canRedo = () => {
+    if (currentMoveIndex === -1) return false;
+    return currentMoveIndex < moveHistory.length - 1;
+  };
 
   const goToMoveIndex = (moveIndex: number) => {
-    const history = chess.history({ verbose: true });
+    if (moveIndex < -1 || moveIndex >= moveHistory.length) return;
 
-    if (moveIndex < 0 || moveIndex >= history.length) return;
-
-    chess.reset();
-    const newFenHistory = [chess.fen()];
-    for (let i = 0; i <= moveIndex; i++) {
-      chess.move({
-        from: history[i].from,
-        to: history[i].to,
-        promotion: history[i].promotion,
-      });
-      newFenHistory.push(chess.fen());
+    if (moveIndex === -1) {
+      // Go to initial position
+      chess.reset();
+      setCurrentMoveIndex(-1);
+      setFen(chess.fen());
+      setIsCheck(chess.inCheck());
+      return;
     }
 
-    updateGameState();
-    clearRedo();
-    setFenHistory(newFenHistory);
+    // Navigate to the position without modifying the history
+    setCurrentMoveIndex(moveIndex);
+    
+    // Update Chess instance to the selected position
+    chess.reset();
+    for (let i = 0; i <= moveIndex; i++) {
+      chess.move(moveHistory[i]);
+    }
+    
+    // Update display state (but keep full PGN)
+    setFen(chess.fen());
+    setIsCheck(chess.inCheck());
   };
 
   // Adapter function to match Chessground's move event signature
@@ -174,6 +227,7 @@ export const useChessGame = () => {
     isGameOver,
     gameOverReason,
     reset,
+    currentMoveIndex,
     loadFromPgn,
     fenHistory,
     undo,

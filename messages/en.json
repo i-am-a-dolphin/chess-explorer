@@ -10,6 +10,7 @@
     "moveHistory": "Notation",
     "white": "White",
     "black": "Black",
+    "initialPosition": "Initial Position",
     "noMovesYet": "Every great game starts with the first move",
     "makeMove": "Make a move to explore openings",
     "gameOver": "Game Over",
@@ -27,14 +28,6 @@
     "opening": "Opening",
     "middlegame": "Middlegame",
     "endgame": "Endgame",
-    "middlegameStrategiesTitle": "Middlegame strategies",
-    "middlegameStrategies": [
-      "Keep your king safe and address immediate threats.",
-      "Prioritize active piece placement and improve passive pieces.",
-      "Create or defend weaknesses and secure key outposts.",
-      "Control the center and prepare breaks at critical points.",
-      "Look for tactics while maintaining long-term plans and balance."
-    ],
     "tablebaseMoves": "Best Endgame Moves",
     "loadingTablebase": "Loading endgame analysis...",
     "possibleNextMoves": "Possible next moves",
@@ -71,6 +64,7 @@
     "showSolution": "Show Solution",
     "hideSolution": "Hide Solution",
     "resetPuzzle": "Reset Puzzle",
+    "deletePuzzle": "Delete Puzzle",
     "gameType": "Game Type",
     "gameTypes": {
       "ultraBullet": "Ultra Bullet",
@@ -96,6 +90,7 @@
   "footer": {
     "github": "GitHub",
     "description": "Opening and endgame explorer for chess beginners",
-    "copyright": "© {year} Chess Explorer. All rights reserved."
+    "copyright": "© {year} Chess Explorer. All rights reserved.",
+    "contributeTranslation": "Contribute Translation"
   }
 }

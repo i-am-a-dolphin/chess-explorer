@@ -1,13 +1,13 @@
 import "./globals.css";
 
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { ThemeProvider } from "next-themes";
+import { Geist, Geist_Mono } from "next/font/google";
+import { notFound } from "next/navigation";
 
-import { Footer } from "@/components/footer";
+import { Header } from "@/components/header";
 import { Toaster } from "@/components/shadcn-ui/sonner";
 import { TooltipProvider } from "@/components/shadcn-ui/tooltip";
 import { routing } from "@/i18n/routing";
@@ -62,24 +62,25 @@ const LocaleLayout = async ({ children, params }: Props) => {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="px-4 py-8">
-          <NextIntlClientProvider messages={messages}>
-            <ThemeProvider
-              storageKey="color-scheme"
-              attribute="class"
-              enableSystem
-            >
+        <NextIntlClientProvider messages={messages}>
+          <ThemeProvider
+            storageKey="color-scheme"
+            attribute="class"
+            enableSystem
+          >
+            <Header />
+            <div className="px-4 py-8">
               <TooltipProvider>
                 {children}
-                <Footer />
                 <Toaster />
               </TooltipProvider>
-            </ThemeProvider>
-          </NextIntlClientProvider>
-        </div>
+            </div>
+          </ThemeProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );
 };
 
 export default LocaleLayout;
+

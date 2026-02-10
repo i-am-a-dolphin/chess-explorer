@@ -7,6 +7,7 @@ import {
   EyeIcon,
   EyeOffIcon,
   RotateCcw,
+  Trash2,
 } from "lucide-react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
@@ -32,6 +33,7 @@ type PuzzleInfoProps = {
   currentPgn: string;
   loadFromPgn: (pgn: string) => void;
   onPreviewMoveChange?: (uci: string | null) => void;
+  onClear?: () => void;
 };
 
 export const PuzzleInfo = ({
@@ -40,6 +42,7 @@ export const PuzzleInfo = ({
   currentPgn,
   loadFromPgn,
   onPreviewMoveChange,
+  onClear,
 }: PuzzleInfoProps) => {
   const t = useTranslations("chess");
   const { getThemeLabel } = useLocalizedTheme();
@@ -147,6 +150,14 @@ export const PuzzleInfo = ({
             >
               Lichess ↗
             </Link>
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={onClear}
+            title={t("deletePuzzle")}
+          >
+            <Trash2 className="h-4 w-4" />
           </Button>
         </ButtonGroup>
       </div>

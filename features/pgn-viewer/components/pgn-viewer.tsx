@@ -4,7 +4,7 @@ import type { HeadlessState } from "@lichess-org/chessground/state";
 
 import { Chessground } from "@/features/chessground/components/chessground";
 
-import { BoardInfo } from "./board-info";
+import { FenInfo } from "./board-info";
 import { ControlButtons } from "./control-buttons";
 import { MoveHistoryTable } from "./move-history-table";
 
@@ -24,6 +24,7 @@ type PgnViewerProps = {
   redo: () => boolean;
   canRedo: () => boolean;
   goToMoveIndex: (moveIndex: number) => void;
+  currentMoveIndex: number;
 };
 
 export const PgnViewer = ({
@@ -42,29 +43,32 @@ export const PgnViewer = ({
   redo,
   canRedo,
   goToMoveIndex,
+  currentMoveIndex,
 }: PgnViewerProps) => {
   return (
-    <div className="flex flex-col items-center gap-4">
-      <Chessground
-        fen={fen}
-        turnColor={turnColor}
-        isGameOver={isGameOver}
-        gameOverReason={gameOverReason}
-        onRestart={reset}
-        getDests={getDests}
-        getCheck={getCheck}
-        move={move}
-        previewMove={previewMove}
-      />
-      <BoardInfo fen={fen} turnColor={turnColor} />
-      <ControlButtons
-        canUndo={canUndo()}
-        canRedo={canRedo()}
-        onUndo={undo}
-        onRedo={redo}
-        onReset={reset}
-      />
-      <MoveHistoryTable pgn={pgn} goToMoveIndex={goToMoveIndex} />
+    <div className="flex flex-col gap-4 lg:flex-row lg:items-start">
+      <MoveHistoryTable pgn={pgn} goToMoveIndex={goToMoveIndex} currentMoveIndex={currentMoveIndex} />
+      <div className="flex flex-1 flex-col items-center gap-4 lg:order-2">
+        <Chessground
+          fen={fen}
+          turnColor={turnColor}
+          isGameOver={isGameOver}
+          gameOverReason={gameOverReason}
+          onRestart={reset}
+          getDests={getDests}
+          getCheck={getCheck}
+          move={move}
+          previewMove={previewMove}
+        />
+        <FenInfo fen={fen} />
+        <ControlButtons
+          canUndo={canUndo()}
+          canRedo={canRedo()}
+          onUndo={undo}
+          onRedo={redo}
+          onReset={reset}
+        />
+      </div>
     </div>
   );
 };

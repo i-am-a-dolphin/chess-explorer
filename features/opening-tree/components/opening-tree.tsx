@@ -1,8 +1,8 @@
 "use client";
 
 import { SearchIcon, YoutubeIcon } from "lucide-react";
-import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
+import Image from "next/image";
 import { useMemo } from "react";
 
 import type { Opening } from "@/__generated/openings";

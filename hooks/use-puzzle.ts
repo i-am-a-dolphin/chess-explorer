@@ -17,6 +17,7 @@ interface UsePuzzleResult {
   loading: boolean;
   error: string | null;
   loadNewPuzzle: (theme: PuzzleTheme) => Promise<void>;
+  clearPuzzle: () => void;
   currentTheme: PuzzleTheme | null;
 }
 
@@ -91,11 +92,20 @@ export function usePuzzle(): UsePuzzleResult {
     [allPuzzles, getThemeLabel],
   );
 
+  const clearPuzzle = useCallback(() => {
+    setPuzzle(null);
+    setError(null);
+    setLoading(false);
+    setCurrentTheme(null);
+    setSelectedPuzzleId(null);
+  }, []);
+
   return {
     puzzle,
     loading,
     error,
     loadNewPuzzle,
+    clearPuzzle,
     currentTheme,
   };
 }

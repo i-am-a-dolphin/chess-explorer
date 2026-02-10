@@ -25,7 +25,6 @@ export const GameInfo = ({
 
   let content: React.ReactNode = null;
   let labelText = t("possibleNextMoves");
-  const strategies = t.raw("middlegameStrategies") as string[];
 
   switch (chessPhase) {
     case "opening":
@@ -39,14 +38,8 @@ export const GameInfo = ({
       );
       break;
     case "middlegame":
-      labelText = t("middlegameStrategiesTitle");
-      content = (
-        <ul className="text-muted-foreground list-disc space-y-1 pl-5 text-sm">
-          {Array.isArray(strategies)
-            ? strategies.map((item, index) => <li key={index}>{item}</li>)
-            : null}
-        </ul>
-      );
+      labelText = "";
+      content = null; // 미들게임 전략은 현재 표시하지 않음
       break;
     case "endgame":
       labelText = t("possibleNextMoves");

@@ -99,7 +99,7 @@ export const Chessground = ({
   ]);
 
   return (
-    <div className="relative w-full max-w-lg space-y-2">
+    <div className="relative w-full space-y-2">
       <div ref={ref} className="aspect-square" />
       <GameOverDialog
         isGameOver={isGameOver}

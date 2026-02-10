@@ -10,6 +10,7 @@
     "moveHistory": "기보",
     "white": "백",
     "black": "흑",
+    "initialPosition": "초기 위치",
     "noMovesYet": "모든 명국은 첫 수에서 시작됩니다",
     "makeMove": "수를 두어 오프닝을 탐색하세요",
     "gameOver": "게임 종료",
@@ -27,14 +28,6 @@
     "opening": "오프닝",
     "middlegame": "미들게임",
     "endgame": "엔드게임",
-    "middlegameStrategiesTitle": "미들게임 전략",
-    "middlegameStrategies": [
-      "킹 안전을 확보하고 위협을 먼저 제거하세요.",
-      "활동적인 말 배치를 우선하고, 수동적인 말은 개선하세요.",
-      "약점을 만들고(혹은 지키고) 중요한 전초기지를 확보하세요.",
-      "중앙을 통제하며, 결정적인 지점에서 돌파를 준비하세요.",
-      "전술 기회를 노리되, 장기적인 계획과 균형을 유지하세요."
-    ],
     "tablebaseMoves": "최선의 엔드게임 수",
     "loadingTablebase": "엔드게임 분석 로드 중...",
     "possibleNextMoves": "가능한 다음 수",
@@ -71,6 +64,7 @@
     "showSolution": "정답 보기",
     "hideSolution": "정답 숨기기",
     "resetPuzzle": "퍼즐 초기화",
+    "deletePuzzle": "퍼즐 삭제",
     "gameType": "게임 타입",
     "gameTypes": {
       "ultraBullet": "울트라불렛",
@@ -96,6 +90,7 @@
   "footer": {
     "github": "GitHub",
     "description": "초보자를 위한 체스 오프닝 및 엔드게임 탐색기",
-    "copyright": "© {year} Chess Explorer. All rights reserved."
+    "copyright": "© {year} Chess Explorer. All rights reserved.",
+    "contributeTranslation": "번역 기여"
   }
 }

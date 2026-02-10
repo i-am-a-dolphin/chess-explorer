@@ -1,0 +1,71 @@
+id,theme,theme_en,theme_ko,category_en,category_ko,frequency
+1,mate,Checkmate,체크메이트,Mates,체크메이트,261718
+2,endgame,Endgame,엔드게임,Phases,단계,224304
+3,short,Short puzzle,짧은 퍼즐,Lengths,길이,199241
+4,middlegame,Middlegame,미들게임,Phases,단계,175212
+5,oneMove,One-move puzzle,1수 퍼즐,Lengths,길이,155656
+6,mateIn1,Mate in 1,1수 체크메이트,Mates,체크메이트,155351
+7,mateIn2,Mate in 2,2수 체크메이트,Mates,체크메이트,93344
+8,crushing,Crushing,압도,Goals,목표,79205
+9,advantage,Advantage,우세,Goals,목표,64739
+10,kingsideAttack,Kingside attack,킹사이드 어택,Motifs,모티브,54628
+11,long,Long puzzle,긴 퍼즐,Lengths,길이,52289
+12,fork,Fork,포크,Motifs,모티브,49586
+13,master,Master games,마스터 게임,Origin,출처,45468
+14,backRankMate,Back rank mate,백랭크 체크메이트,Mate themes,메이트 테마,29115
+15,rookEndgame,Rook endgame,룩 엔드게임,Phases,단계,23641
+16,sacrifice,Sacrifice,희생,Motifs,모티브,17527
+17,advancedPawn,Advanced pawn,프로모션 위협,Motifs,모티브,17270
+18,opening,Opening,오프닝,Phases,단계,17007
+19,hangingPiece,Hanging piece,무방비한 기물,Motifs,모티브,13556
+20,mateIn3,Mate in 3,3수 체크메이트,Mates,체크메이트,12336
+21,discoveredAttack,Discovered attack,디스커버드 어택,Motifs,모티브,11848
+22,deflection,Deflection,분산,Advanced,고급,11069
+23,pin,Pin,핀,Motifs,모티브,10297
+24,equality,Equality,균형,Goals,목표,10158
+25,pawnEndgame,Pawn endgame,폰 엔드게임,Phases,단계,9023
+26,pillsburysMate,Pillsbury's mate,필스버리 메이트,Mate themes,메이트 테마,8763
+27,promotion,Promotion,프로모션,Special moves,특수 행마,8642
+28,veryLong,Very long puzzle,매우 긴 퍼즐,Lengths,길이,8634
+29,skewer,Skewer,스큐어,Motifs,모티브,8574
+30,operaMate,Opera mate,오페라 메이트,Mate themes,메이트 테마,8536
+31,queensideAttack,Queenside attack,퀸사이드 어택,Motifs,모티브,8272
+32,defensiveMove,Defensive move,방어적인 수,Advanced,고급,6893
+33,attraction,Attraction,유인,Advanced,고급,5710
+34,exposedKing,Exposed king,무방비한 킹,Motifs,모티브,4863
+35,quietMove,Quiet move,조용한 수,Advanced,고급,4802
+36,queenRookEndgame,Queen and Rook endgame,퀸과 룩 엔드게임,Phases,단계,4107
+37,attackingF2F7,Attacking f2 or f7,f2 또는 f7 공격,Motifs,모티브,4056
+38,queenEndgame,Queen endgame,퀸 엔드게임,Phases,단계,3629
+39,bishopEndgame,Bishop endgame,비숍 엔드게임,Phases,단계,3101
+40,smotheredMate,Smothered mate,질식 메이트,Mate themes,메이트 테마,2528
+41,masterVsMaster,Master vs Master games,마스터 vs 마스터 게임,Origin,출처,2217
+42,knightEndgame,Knight endgame,나이트 엔드게임,Phases,단계,2132
+43,discoveredCheck,Discovered check,디스커버드 체크,Advanced,고급,1928
+44,clearance,Clearance sacrifice,정리 희생,Advanced,고급,1825
+45,intermezzo,Intermezzo,사잇수,Advanced,고급,1556
+46,zugzwang,Zugzwang,추크츠방,Advanced,고급,1550
+47,cornerMate,Corner mate,코너 메이트,Mate themes,메이트 테마,1013
+48,hookMate,Hook mate,훅 메이트,Mate themes,메이트 테마,916
+49,xRayAttack,X-Ray attack,엑스레이 공격,Advanced,고급,879
+50,trappedPiece,Trapped piece,갇힌 기물,Motifs,모티브,849
+51,doubleCheck,Double check,더블 체크,Motifs,모티브,641
+52,mateIn4,Mate in 4,4수 체크메이트,Mates,체크메이트,622
+53,capturingDefender,Capture the defender,방어 중인 기물 잡기,Motifs,모티브,575
+54,morphysMate,Morphy's mate,모피 메이트,Mate themes,메이트 테마,552
+55,arabianMate,Arabian mate,아라비안 메이트,Mate themes,메이트 테마,533
+56,interference,Interference,간섭,Advanced,고급,515
+57,triangleMate,Triangle mate,트라이앵글 메이트,Mate themes,메이트 테마,465
+58,doubleBishopMate,Double bishop mate,쌍비숍 체크메이트,Mate themes,메이트 테마,422
+59,anastasiaMate,Anastasia's mate,아나스타샤 메이트,Mate themes,메이트 테마,361
+60,blindSwineMate,Blind swine mate,블라인드 스와인 메이트,Mate themes,메이트 테마,345
+61,bodenMate,Boden's mate,보덴 메이트,Mate themes,메이트 테마,332
+62,killBoxMate,Kill box mate,킬박스 메이트,Mate themes,메이트 테마,257
+63,dovetailMate,Dovetail mate,도브테일 메이트,Mate themes,메이트 테마,212
+64,enPassant,En passant,앙파상,Special moves,특수 행마,78
+65,mateIn5,Mate in 5 or more,5수 이상의 체크메이트,Mates,체크메이트,65
+66,vukovicMate,Vukovic mate,부코비치 메이트,Mate themes,메이트 테마,44
+67,superGM,Super GM games,슈퍼 GM 게임,Origin,출처,36
+68,balestraMate,Balestra mate,발레스트라 메이트,Mate themes,메이트 테마,19
+69,castling,Castling,캐슬링,Special moves,특수 행마,15
+70,underPromotion,Underpromotion,언더프로모션,Special moves,특수 행마,8
